@@ -58,4 +58,9 @@ class LoanRequestForm(TransactionForm):
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
 
+        if amount < 1:
+            raise forms.ValidationError(
+                f'NOOB, you cannot request for negative loans'
+            )
+
         return amount
